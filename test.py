@@ -2,12 +2,11 @@ from datetime import datetime
 
 
 class ValidationError(Exception):
-    """خطاهای اعتبارسنجی ورودی‌ها."""
     pass
 
 
 class TestCase:
-    def init(self, test_name: str, test_log: str,
+    def __init__(self, test_name: str, test_log: str,
                  subtests: list = None,
                  started_at: datetime = None,
                  finished_at: datetime = None):
@@ -21,14 +20,14 @@ class TestCase:
         self.result = None  # True / False / None
 
     # ----------------- Validators -----------------
-    def validate_test_name(self, name: str) -> str:
+    def validate_test_name(self, name: str) :
         if not isinstance(name, str):
             raise ValidationError("test_name باید رشته باشد.")
         if len(name) > 50:
             raise ValidationError("test_name نباید بیشتر از 50 کاراکتر باشد.")
         return name
 
-    def validate_test_log(self, log: str) -> str:
+    def validate_test_log(self, log: str) :
         if not isinstance(log, str):
             raise ValidationError("test_log باید رشته باشد.")
         if len(log) > 300:
@@ -38,23 +37,20 @@ class TestCase:
     def validate_subtests(self, subtests: list) -> list:
         if subtests is None:
             return []
-        if not isinstance(subtests, list):
+        if not isinstance(subtests, list) :
             raise ValidationError("subtests باید لیست باشد.")
         for s in subtests:
-            if not isinstance(s, TestCase):
+            if not isinstance(s, TestCase) :
                 raise ValidationError("همه اعضای subtests باید از نوع TestCase باشند.")
         return subtests
 
-    # ----------------- Main Logic -----------------
     def run_test(self):
-        """اجرای تست و تست‌های زیرمجموعه"""
         self.started_at = datetime.now()
         try:
-            # اجرای تست‌های فرزند
+
             for sub in self.subtests:
                 sub.run_test()
 
-            # اینجا یک منطق تست ساده قرار می‌دهیم (برای نمونه)
             self.result = True if len(self.test_log) % 2 == 0 else False
 
         except Exception as e:
@@ -65,7 +61,7 @@ class TestCase:
             self.finished_at = datetime.now()
 
     def report(self) -> str:
-        """خروجی گزارشی تست"""
+
         return f"{self.test_name} - {self.started_at} - {self.finished_at} : {self.test_log} | Result: {self.result}"
     
     
