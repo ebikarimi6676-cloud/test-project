@@ -10,16 +10,16 @@ class TestCase:
                  subtests: list = None,
                  started_at: datetime = None,
                  finished_at: datetime = None):
-        # اعتبارسنجی
+        
         self.test_name = self.validate_test_name(test_name)
         self.test_log = self.validate_test_log(test_log)
         self.subtests = self.validate_subtests(subtests)
 
         self.started_at = started_at
         self.finished_at = finished_at
-        self.result = None  # True / False / None
+        self.result = None  
 
-    # ----------------- Validators -----------------
+
     def validate_test_name(self, name: str) :
         if not isinstance(name, str):
             raise ValidationError("test_name باید رشته باشد.")
