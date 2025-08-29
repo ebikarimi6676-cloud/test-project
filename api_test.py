@@ -1,19 +1,18 @@
-from TestCase import TestCase
+from test_case import TestCase, ValidationError
 from datetime import datetime
 
 class APITestCase(TestCase):
-     def __init__(self, test_name: str, test_log: str, api_route: str, subtests: list = None):
+    def __init__(self, test_name: str, test_log: str, api_route: str, subtests: list = None):
         super().__init__(test_name, test_log, subtests)
-        if not isinstance(api_route, str) or not api_route:
 
+        if not isinstance(api_route, str) or not api_route:
             raise ValidationError("api_route باید یک رشته معتبر باشد.")
         self.api_route = api_route
 
-     def run_test(self):
-        """اجرای تست API"""
+    def run_test(self):
+
         self.started_at = datetime.now()
 
-        # اجرای subtests
         for sub in self.subtests:
             sub.run_test()
 
