@@ -67,3 +67,5 @@ class TestCase:
     def report(self) -> str:
         """خروجی گزارشی تست"""
         return f"{self.test_name} - {self.started_at} - {self.finished_at} : {self.test_log} | Result: {self.result}"
+    
+    
