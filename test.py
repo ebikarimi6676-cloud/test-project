@@ -3,8 +3,7 @@ from datetime import datetime
 
 class ValidationError(Exception):
     pass
-
-
+ 
 class TestCase:
     def __init__(self, test_name: str, test_log: str,
                  subtests: list = None,
@@ -34,7 +33,7 @@ class TestCase:
             raise ValidationError("test_log نباید بیشتر از 300 کاراکتر باشد.")
         return log
 
-    def validate_subtests(self, subtests: list) -> list:
+    def validate_subtests(self, subtests: list) :
         if subtests is None:
             return []
         if not isinstance(subtests, list) :
@@ -64,4 +63,4 @@ class TestCase:
 
         return f"{self.test_name} - {self.started_at} - {self.finished_at} : {self.test_log} | Result: {self.result}"
     
-    
+
