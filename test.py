@@ -1,6 +1,5 @@
 from datetime import datetime
 
-
 class ValidationError(Exception):
     pass
  
