@@ -1,4 +1,4 @@
-from test_case import TestCase, ValidationError
+from test import TestCase, ValidationError
 from datetime import datetime
 
 class APITestCase(TestCase):

@@ -1,4 +1,4 @@
-from test_case import TestCase
+from test import TestCase
 from api_test import APITestCase
 
 if __name__ == "__main__":
